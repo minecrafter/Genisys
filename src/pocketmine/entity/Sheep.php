@@ -51,23 +51,20 @@ class Sheep extends Animal implements Colorable{
 	}
 
 	public static function getRandomColor() : int{
-		$rand = "";
-		$rand .= str_repeat(Wool::WHITE . " ", 20);
-		$rand .= str_repeat(Wool::ORANGE . " ", 5);
-		$rand .= str_repeat(Wool::MAGENTA . " ", 5);
-		$rand .= str_repeat(Wool::LIGHT_BLUE . " ", 5);
-		$rand .= str_repeat(Wool::YELLOW . " ", 5);
-		$rand .= str_repeat(Wool::GRAY . " ", 10);
-		$rand .= str_repeat(Wool::LIGHT_GRAY . " ", 10);
-		$rand .= str_repeat(Wool::CYAN . " ", 5);
-		$rand .= str_repeat(Wool::PURPLE . " ", 5);
-		$rand .= str_repeat(Wool::BLUE . " ", 5);
-		$rand .= str_repeat(Wool::BROWN . " ", 5);
-		$rand .= str_repeat(Wool::GREEN . " ", 5);
-		$rand .= str_repeat(Wool::RED . " ", 5);
-		$rand .= str_repeat(Wool::BLACK . " ", 10);
-		$arr = explode(" ", $rand);
-		return $arr[mt_rand(0, count($arr) - 1)];
+		$rand = mt_rand(0, 100000); //Allow 3 decimal places
+		if($rand <= 5000){
+			return Wool::BLACK; //5%
+		}elseif($rand <= 10000){
+			return Wool::GRAY; //5%
+		}elseif($rand <= 15000){
+			return Wool::LIGHT_GRAY; //5%
+		}elseif($rand <= 18000){
+			return Wool::BROWN; //3%
+		}elseif($rand <= 99836){
+			return Wool::WHITE; //81.836%
+		}else{
+			return Wool::PINK; //0.164%
+		}
 	}
 
 	public function getColor() : int{
